@@ -5,13 +5,13 @@ public class EbBill {
 	public static void main(String[] args) {
 	    double total=0;
 	    String s;
-	    do {
+	   // do {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter the type of consumer:");
 		String type=sc.next();
 		System.out.println("Enter the username:");
 		String name=sc.next();
-		if(name.length()>=0) {
+		if(name.length()>=3) {
 			System.out.println("Your name is valid");
 		}
 		else {
@@ -69,12 +69,12 @@ public class EbBill {
 			System.out.println("bill no is:"+billNo);
 			System.out.println("your total cost is:"+total);
 		}
-	    System.out.println("exit?y/n");
-	    s=sc.next();
+	   //System.out.println("exit?y/n");
+	    //s=sc.next();
 	    }
-	    while(s.equals("y"));
+	    //while(s.equals("y"));
 	}
-}
+
 
 
 
