@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Dashboard</title>
+<link rel ="stylesheet" th:href="@{/CSS files/Dashboard.css}">
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css}">
+</head>
+<body>
+<style>
+body{
+background:url(/Images/admin.jpg);
+background-position: center;
+background-size: cover;
+width:100%;
+height:1200px;
+margin-left: 10px;
+background-repeat: no-repeat;
+}
+    .container{
+	height: 200px;
+	width: 290px;
+	background-color:#0000ff;
+	border-radius: 10px;
+	margin-top:140px;
+	margin-left: 100px;
+	align-content: center;
+}
+.container1{
+	height: 200px;
+	width: 290px;
+	background-color: teal;
+	border-radius: 10px;
+	margin-top: -200px;
+	align-content: center;
+    margin-left:520px;
+}
+
+.container2{
+	height: 200px;
+	width: 290px;
+	background-color: #ff80c0;
+	border-radius: 10px;
+	margin-top: -200px;
+	align-content: center;
+	margin-left:900px;	
+}
+.container3{
+	height: 200px;
+	width: 300px;
+	background-color: #00ff80;
+	border-radius: 10px;
+	margin-top: 50px;
+	margin-left: 100px;
+	align-content: center;
+	
+}
+.container4{
+	height: 200px;
+	width: 300px;
+	background-color:#ff0000;
+	border-radius: 10px;
+	margin-top: 50px;
+	margin-left: 100px;
+	align-content: center;
+
+	
+}
+
+.container5{
+	height: 190px;
+	width: 300px;
+	background-color:#ffff00 ;
+	border-radius: 10px;
+	margin-top: 50px;
+	margin-left: 100px;
+}
+
+.container6{
+	height: 200px;
+	width: 300px;
+	background-color: #00ff80;
+	border-radius: 10px;
+	margin-top: -690px;
+	margin-left: 520px;
+	align-content: center;
+	
+}
+.container7{
+	height: 200px;
+	width: 300px;
+	background-color:#ff0000;
+	border-radius: 10px;
+	margin-top: 50px;
+	margin-left: 520px;
+	align-content: center;
+
+	
+}
+
+.container8{
+	height: 190px;
+	width: 300px;
+	background-color:#ffff00 ;
+	border-radius: 10px;
+	margin-top: 50px;
+	margin-left: 520px;
+}
+</style>
+
+<body>
+<div class="menu-bar">
+        <ul>
+        
+        <ol> <a th:href="@{/listEpassForm}"><em class="fa-solid fa-table-list"></em>&nbsp;Epass Form List View</a></ol>        
+         <ol> <a th:href="@{/listTravelPass}"><em class="fa-solid fa-table-list"></em>&nbsp;Travel Pass Form List View</a></ol>        
+    <ol> <a th:href="@{/}"><em class="fa-solid fa-right-from-bracket"></em>&nbsp;Logout</a></ol>
+     
+       </ul>
+       </div>
+        <div class="container">
+     <br><br><br><br>  <h2 class="topic-heading">Epass Apply Count</h2>
+           <strong><a th:href="@{/listEpassForm}"></strong> <p th:text="${Epass_count}"></p></a>
+</div>
+        
+       <div class="container1">
+       <br><br><br><br>  <h2 class="topic-heading">Travel Pass Apply Count</h2>
+            <strong><a th:href="@{/listTravelPass}"></strong><p th:text="${TravelPass_count}"></p></a>
+</div>
+
+         <div class="container2">
+      <br><br><br><br>   <h2 class="topic-heading">Total User Count</h2>
+            <p th:text="${TotalUser_count}"> <strong></strong></p>
+</div>
+  <div class="container3">
+      <br><br><br><br>  <h2 class="topic-heading">Epass Approve</h2>
+           <strong><a th:href="@{/epassApproveList}"></strong> <p th:text="${TotalApprove_count}"></p></a>
+            </div>
+            
+  <div class="container4">
+      <br><br><br><br>   <h2 class="topic-heading">Epass Reject</h2>
+     <strong><a th:href="@{/epassRejectList}"></strong> <p th:text="${TotalReject_count}"></p></a>
+    </div>
+    
+  <div class="container5">
+      <br><br><br><br>   <h2 class="topic-heading">Epass Pending</h2>
+      <strong><a th:href="@{/epassPendingList}"></strong><p th:text="${TotalPending_count}"></p></a>
+    </div>
+    
+    <div class="container6">
+      <br><br><br><br>   <h2 class="topic-heading">Travel Pass Approve</h2>
+        <strong><a th:href="@{/travelPassApprove}"></strong> <p th:text="${TotalApprove_count1}"></p></a>
+            </div>
+            
+  <div class="container7">
+      <br><br><br><br><h2 class="topic-heading">Travel Pass Reject</h2>
+     <strong><a th:href="@{/travelPassReject}"></strong> <p th:text="${TotalReject_count1}"></p></a>
+    </div>
+    
+  <div class="container8">
+      <br><br><br><br>   <h2 class="topic-heading">Travel Pass Pending</h2>
+      <strong><a th:href="@{/travelPassPending}"></strong> <p th:text="${TotalPending_count1}"></p></a>
+    </div>                    
+          
+        <body style="text-align:center">
+   
+    <div id="counter">
+        <!-- counts -->
+    </div>
+
+</body>
+</html>

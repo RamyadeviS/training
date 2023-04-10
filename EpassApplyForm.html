@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="ISO-8859-1">
+<title>Epass Form</title>
+<link rel="stylesheet" th:href="@{/CSS files/EpaasForm.css}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epass Form Apply</title>
+<link rel="stylesheet" th:href="@{/CSS files/Dashboard.css}">
+<link
+	th:href="@{http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css}"
+	rel="Stylesheet" type="text/css" />
+
+</head>
+<body>
+	<ol>
+		<a th:href="@{/userDashboard}"><em class="fa-solid fa-table-list"></em>&nbsp;Back</a>
+	</ol>
+
+	<div class="menu-bar">
+		<ul>
+
+			<ol>
+				<a th:href="@{/EpassApply}"><em
+					class="fa-sharp fa-solid fa-car-side"></em>&nbsp;E-Pass Form</a>
+			</ol>
+			<ol>
+				<a th:href="@{/travelPassApply}"><em class="fa-solid fa-plane"></em>&nbsp;Travel
+					Pass Form</a>
+			</ol>
+			<ol>
+				<a th:href="@{/userView}"><em class="fa-brands fa-wpforms"></em>&nbsp;Epass
+					Status View</a>
+			</ol>
+			<ol>
+				<a th:href="@{/travelView}"><em class="fa-brands fa-wpforms"></em>&nbsp;Travel
+					Pass Status View</a>
+			</ol>
+			<ol>
+				<a th:href="@{/}"><em class="fa-solid fa-right-from-bracket"></em>&nbsp;Logout</a>
+			</ol>
+
+		</ul>
+	</div>
+
+	<br>
+	<br>
+	<h1>E-Pass Apply Form</h1>
+	<header>
+		<div class="container">
+			<div class="left">
+				<form id="form1" name="myform1" onsubmit="validateForm1()"
+					th:action="@{/epassForm}" th:object="${FormApply}" method="post"
+					enctype="multipart/form-data">
+					<div id=form-set style="display: flex;">
+						<div>
+							<label>Applicant Name <input type="text"
+								name="applicantName" id="ApplicantName"
+								th:value="${session.UserName}" readonly="readonly" required></label>
+
+							<div class="session"></div>
+
+							<br> <label>Aadhar No </label><br> <input type="number"
+								name="aadharNo" id="AadharNo" th:value="${session.AadharNo}"
+								readonly="readonly" required>
+
+							<div id="zip">
+								<label> <br> Gender <br> <Select name="Gender"
+									th:field="*{gender}">
+										<option th:field="*{gender}" value="Female">Female</option>
+										<option th:field="*{gender}" value="Male">Male</option>
+										<option th:field="*{gender}" value="Transgender">Transgender</option>
+								</Select>
+								</label>
+							</div>
+							<div>
+								<label> <br>Reason <br> <Select name="Reason"
+									th:field="*{reason}">
+										<option th:field="*{reason}" value="logistic Deliveries">logistic
+											Deliveries</option>
+										<option th:field="*{reason}" value="Medical Supply">Medical
+											Supply</option>
+										<option th:field="*{reason}" value="Essential Services">Essential
+											Services</option>
+										<option th:field="*{reason}" value="Medical Emergency">Medical
+											Emergency</option>
+										<option th:field="*{reason}" value="Government Duty">Government
+											Duty</option>
+										<option th:field="*{reason}" value="Death Cause">Death
+											Cause</option>
+										<option th:field="*{reason}" value="Wedding Function">Wedding
+											Function</option>
+								</Select>
+								</label>
+							</div>
+
+							<br> FatherName <input type="text" name="FatherName"
+								id="FatherName" placeholder="Father Name"
+								th:field="*{fatherName}" required onkeyup="fatherNameValid()">
+							<span id="fathername-error"></span> <br> <br> Date Of
+							Birth <input type="date" min="1950-01-01" max="2020-04-01"
+								name="dob" placeholder="dob" th:field="*{dob}" id="dob" required>
+
+							<br> <br> From District <input type="text"
+								name="FromDistrict" id="FromDistrict"
+								placeholder="From District" th:field="*{fromDistrict}" required
+								onkeyup="fromDistrictValid()"> <span
+								id="fromDistrict-error"></span> <br> &emsp; &emsp; &emsp;
+							&emsp;
+						</div>
+						<div class="right">
+							<br> <br> To District <br> <input type="text"
+								name="ToDistrict" id="ToDistrict" placeholder="To District"
+								th:field="*{toDistrict}" required onkeyup="toDistrictValid()">
+							<span id="toDistrict-error"></span> <br> <br> Travel
+							Date <input type="date" name="TravelDate"
+								placeholder="TravelDate" id="TravelDate"
+								th:field="*{travelDate}" required onchange="day()"> <br>
+							<br> Return Date <input type="date" name="ReturnDate"
+								placeholder="ReturnDate" id="ReturnDate"
+								th:field="*{returnDate}" onchange="day()"> <br> <br>
+
+							No Of Passengers<br> <input type="number"
+								name="NoOfPassengers" id="NoOfPassengers"
+								placeholder="No Of Passengers" th:field="*{noOfPassengers}"
+								required onkeyup="passengersValidation()"> <span
+								id="passengers-error"></span> <br> <br> Vehicle No <br>
+							<input type="text" name="VehicleNo" id="VehicleNo"
+								placeholder="Vehicle No" th:field="*{vehicleNo}" required
+								onkeyup="vehicleNoValidation()"> <span
+								id="vehicleNo-error"></span> <br> <br> Mobile No <br>
+							<input type="number" name="MobileNo" id="MobileNo"
+								placeholder="**********" th:field="*{mobileNo}" required
+								onkeyup="mobileNoValidation()"> <span
+								id="mobileNo-error"></span> <br> <br> <label>
+								Vaccination Certificate &nbsp;<br> <select
+								name="VaccinationCertificate" id="VaccinationCertificate"
+								th:field="*{vaccinationCertificate}">
+
+									<option th:field="*{vaccinationCertificate}" id="Yes"
+										value="Yes">Yes</option>
+									<option th:field="*{vaccinationCertificate}" id="No" value="No">No</option>
+
+							</select> <span id="vaccinationCertificate-error"></span> <br> <br>
+								<br>
+							</label> <label> Upload Image &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+								type="file" name="VaccineImage" required><br> <br>&emsp;&emsp;
+								<input type="Submit" value="Go back!" onclick="history.back()">
+								&nbsp;&nbsp;&nbsp;
+								<button type="submit" id="btn" onclick="Drop()">&nbsp;Submit</button>
+							</label>
+							<div>
+								<img alt="image" th:src="@{\Images\Apply.gif}" id="EPass">
+
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</header>
+
+
+	<script type="text/javascript">
+
+	// get the select element and the button element
+const select = document.getElementById('VaccinationCertificate');
+const button = document.getElementById('btn');
+
+// add an event listener to the select element
+select.addEventListener('change', function() {
+  // get the selected value
+  const selectedValue = select.value;
+  
+  // if the selected value is "no", disable the button
+  if (selectedValue === 'No') {
+    button.disabled = true;
+  } 
+else {
+    button.disabled = false;
+  }
+
+});
+</script>
+
+	<script type="text/javascript">
+	function day(){
+	const TravelDate = new Date(document.querySelector('#TravelDate').value);
+    const ReturnDate = new Date(document.querySelector('#ReturnDate').value);
+
+    if (ReturnDate < TravelDate) {
+        alert("Return date is greater than Travel date!");
+        console.log("Return date is greater than Travel date!");
+        return false;
+    }
+	return true;
+	}
+    </script>
+
+	<script>
+            var dateInput = document.getElementById("TravelDate");
+            var today = new Date();
+            var minDate = today.toISOString().split('T')[0];
+            dateInput.setAttribute("min", minDate);
+            var oneMonthLater = new Date(today.getFullYear(),
+                    today.getMonth() +8 , today.getDate() + 31);
+            var maxDate = oneMonthLater.toISOString().split('T')[0];
+            dateInput.setAttribute("max", maxDate);
+        </script>
+	<!--      
+<script>        
+function Enable()        
+{
+	document.getElementById("btn").disabled = true;
+	}
+	
+ function enable()        
+{
+	document.getElementById("btn").disabled = false;
+	}
+alert("Yes is Required");
+console.log("Yes is Required");
+	
+	
+</script>
+ 
+<script> 
+
+function verifyAnswer() {  
+//get the selected value from the dropdown list  
+var VaccinationCertificate = document.getElementById("No").value;  
+ 
+  if (VaccinationCertificate .equals( "No") ){  
+    //disable all the radio button   
+    document.getElementById("No").disabled = true;  
+  } else {  
+    //enable all the radio button  
+    document.getElementById("Yes").disabled = false;  
+  }  
+}  
+</script>   -->
+
+
+	<!-- <script type="text/javascript">
+    function validate(){
+    	var Yes= document.getElementById("selection").value;
+    	if(Yes="Select Yes option!! Yes is Required") {
+    		alert("Plese Select Yes Option! Yes is Required")
+    		return false;
+    		
+    	}
+    	return true;
+    }
+ </script> -->
+	<!--
+ <script> 
+
+ function verifyAnswer() {  
+//get the selected value from the dropdown list  
+var VaccinationCertificate = document.getElementById("No").value;  
+ 
+  if (VaccinationCertificate .equals( "No") ){  
+    //disable all the radio button   
+    document.getElementById("btn").disabled = true;  
+  } else {  
+    //enable all the radio button  
+    document.getElementById("btn").disabled = false;  
+  }  
+}  
+</script>   -->
+
+
+	<script type="text/javascript"
+		th:src="@{/Java Script/ScriptValidation.js}"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign In</title>
+<link rel="stylesheet" th:href="@{/CSS files/Login.css}">
+ <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css}">
+</head>
+<body>
+  <ul class="active"><a th:href="@{/}"><em class="fa-solid fa-house-circle-exclamation"></em></a>
+ </ul>
+  <form  th:action="@{/userLogin}" method="get" th:object="${signIn}">
+
+<br><br><br><br><br>
+   <div class="title"><h1>Login Here</h1></div>
+    <div class="container">
+     <div class="left"><br><br>
+                     
+  <img alt="" th:src="@{/Images/SignIn.png}" id="Signin">
+  
+      </div>
+        <div class="right">
+                    <div class="formBox">
+                        <form>
+                        
+          <p>Aadhar Number </p>
+    <input type="text" name="aadharNo" id="AadharNumber" placeholder="Aadhar Number" required  onkeyup="aadharNoValidation()" />
+    
+   <br>              
+         <p>User Name</p>
+ <input type="text" name="userName" id="User Name" placeholder="User Name" required>
+       <p>Password</p>
+        <input type="password" name="Password" placeholder="Password"   required>
+   <input type="Submit" name="" value="Sign In ">
+       &emsp; &emsp; &emsp;<a th:href="@{/forgot}">Forgot Password?</a> <br><br>
+  <div>
+      &emsp;&emsp;&emsp;&emsp; Don't have an account?  &emsp;&emsp;&emsp;&emsp;<a th:href="@{/signUp}">SIGN UP</a>&nbsp;Here <br><br></div>
+    &emsp;&emsp;&emsp;  <a th:href="@{/login}">Login credential</a> <br> 
+  
+    
+    </form>
+    <br> <br><br><br><br>
+    </div>
+   </div>
+ </div>
+</body>
+</html>
