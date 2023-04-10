@@ -1,0 +1,76 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family:arial;
+	box-sizing:border-box;
+	
+}
+body{
+	height: 100px;
+	display: grid;
+	
+	 
+}
+table {
+	width: 100px;
+	box-shadow: -1px, 1 px 1px -5px rgba(0,0,0,0.5);
+	
+	}
+table,td,th{
+padding: 4px;
+border:1px solid lightgray;
+border-collapse:collapse;
+text-align: center; 
+
+}
+
+td{
+	font-size: 13px;
+}
+th{
+	background-color: blue;
+	color: white;
+	font-size: 15px;
+}
+tr:nth-child(ood){
+	background-color:aqua;
+}
+tr:nth-child(ood):hover{
+	background-color: doggerblue;
+	transform:scale(2);
+	transition:transform 300ms ease-in;
+}	
+
+tr:nth-child(even){
+	background-color:#0080ff;
+}
+
+button{
+width: 130px;
+height: 30px;
+background-color:#008040;
+font-size: 15px;
+margin-top:25px;
+
+
+}
+.Reject button{
+width:130px;
+height:30px;
+margin-left: 970px;
+background-color:red;
+font-size: 15px;
+margin-top:-20px;
+}
+#header
+{
+background-color: #16a085;
+color:#fff;
+}
+h1{
+font-weight: 600px;
+text-align: center;
+background-color: #ff80c0;
+color:#fff;
+padding:8px 0px ;
+}
